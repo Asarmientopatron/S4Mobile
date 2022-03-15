@@ -137,7 +137,7 @@ android {
     compileSdkVersion rootProject.ext.compileSdkVersion
 
     defaultConfig {
-        applicationId "com.s3mobileapp"
+        applicationId "com.solicitudesservicios.s3mobileapp"
         minSdkVersion rootProject.ext.minSdkVersion
         compileSdkVersion rootProject.ext.compileSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
