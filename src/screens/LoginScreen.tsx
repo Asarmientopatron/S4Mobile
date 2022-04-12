@@ -18,8 +18,8 @@ export const LoginScreen = ({navigation}: Props) => {
   const {signIn, messages, removeError} = useContext(AuthContext);
   const {theme: {palette}} = useContext(ThemeContext);
   const {username, password, onChange} = useForm({
-    username: '0123456789',
-    password: '1234'
+    username: '',
+    password: ''
   });
 
   useEffect(() => {
@@ -40,7 +40,7 @@ export const LoginScreen = ({navigation}: Props) => {
   }
 
   return (
-    <>
+    <View style={{display: 'flex', flex: 1, backgroundColor: '#0c4f7f'}}>
       {/* Background */}
       <View>
         <LoginBackground/>
@@ -54,17 +54,17 @@ export const LoginScreen = ({navigation}: Props) => {
           <MainLogo/>
           <View style={{alignItems: 'center'}}>
             <View style={{...loginStyles.loginContainer, backgroundColor: palette.background.default}}>
-              <Text style={{...loginStyles.title, color: palette.text.primary}}>Solicitudes de Servicio</Text>
+              <Text style={{...loginStyles.title, color: palette.text.primary}}>Smart Security Solutions</Text>
               <TextInput 
                 style={{...loginStyles.input, color: palette.text.primary}}
                 keyboardType='default'
-                placeholder={'Identificacion'}
+                placeholder={'Identificación'}
                 placeholderTextColor={'rgba(0,0,0,0.3)'}
                 underlineColorAndroid={'rgba(0,0,0,0.5)'}
                 onChangeText={(value) => onChange(value,'username')}
                 value={username}
               />
-              <View style={{width: '100%', flexDirection: 'row', alignItems: 'center'}}>
+              <View style={{width: '100%', flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}>
                 <TextInput 
                   style={{...loginStyles.inputPass, color: palette.text.primary}}
                   keyboardType='default'
@@ -75,19 +75,27 @@ export const LoginScreen = ({navigation}: Props) => {
                   onChangeText={(value) => onChange(value,'password')}
                   value={password}
                 />
-                <Icon name={!watchPass?'eye':'eye-off'} size={30} color={'gray'} onPress={onTooglePass}/>
+                <Icon
+                  style={{
+                    position: 'absolute',
+                    right: '12%'
+                  }}
+                  name={!watchPass?'eye':'eye-off'} 
+                  size={30} color={'gray'} 
+                  onPress={onTooglePass}
+                />
               </View>
               <TouchableOpacity
                 activeOpacity={0.7}
                 style={{...loginStyles.button, backgroundColor: palette.primary.main}}
                 onPress={() => onLogin()}
               >
-                <Text style={{...loginStyles.buttonText, color: palette.text.white}}>Iniciar Sesion</Text>
+                <Text style={{...loginStyles.buttonText, color: palette.text.white}}>Iniciar Sesión</Text>
               </TouchableOpacity>
             </View>
           </View>
         </ScrollView>
       </KeyboardAvoidingView>
-    </>
+    </View>
   );  
 };

@@ -25,7 +25,16 @@ export const MainMenuOption = ({iconName, itemTitle, onPress}: Props) => {
           color={palette.sidebar.textColor}
           style={{marginRight: 10}}
         /> }
-        <Text adjustsFontSizeToFit style={{...mainStyles.menuItem, color: palette.sidebar.textColor}}>{itemTitle}</Text>
+        <Text 
+          adjustsFontSizeToFit 
+          style={{
+            ...mainStyles.menuItem, 
+            color: palette.sidebar.textColor,
+            fontWeight: 'bold'
+          }}
+        >
+          {itemTitle}
+        </Text>
       </View>
       <Icon
         name='chevron-forward-outline'

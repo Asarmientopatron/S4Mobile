@@ -2,7 +2,7 @@ import React, { createContext, useEffect, useReducer } from "react";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Usuario, loginData, Login, Session } from '../../interfaces/AuthInterface';
 import { authReducer, AuthState } from "./authReducer";
-import secSellApi from '../../api/secSellApi';
+import secSellApi, { secSellApiSeg } from '../../api/secSellApi';
 
 type AuthContextProps = {
   token_type:    string|null|undefined;
@@ -53,7 +53,7 @@ export const AuthProvider = ({children}: any) => {
 
   const signIn = async ({username, password}: loginData) => {
     try {
-      const resp = await secSellApi.post<Login>('/users/token', {
+      const resp = await secSellApiSeg.post<Login>('/users/token', {
         username,
         password
       });
@@ -83,7 +83,7 @@ export const AuthProvider = ({children}: any) => {
 
   const getSession = async (token: string) => {
     try {
-      const resp = await secSellApi.get<Session>('/users/current/session', {
+      const resp = await secSellApiSeg.get<Session>('/users/current/session', {
         headers: {
           'Content-Type': 'application/json',
           'Access-Control-Allow-Origin': '*',

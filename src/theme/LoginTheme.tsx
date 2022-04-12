@@ -16,7 +16,8 @@ export const loginStyles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingVertical: 20,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    marginBottom: 10
   },
   label: {
     fontSize: 16
@@ -26,10 +27,10 @@ export const loginStyles = StyleSheet.create({
     textAlign: 'center'
   },
   input: {
-    width: '100%'
+    width: '80%'
   },
   inputPass: {
-    width: '90%'
+    width: '80%'
   },
   button: {
     width: 300,
@@ -40,6 +41,7 @@ export const loginStyles = StyleSheet.create({
   },
   buttonText: {
     fontSize: 19,
+    fontWeight: 'bold',
     textAlign: 'center'
   }
 });

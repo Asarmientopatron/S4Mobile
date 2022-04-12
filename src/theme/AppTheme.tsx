@@ -2,9 +2,8 @@ import { StyleSheet } from "react-native";
 
 export const mainStyles = StyleSheet.create({
   logo: {
-    width: 150,
+    width: 250,
     height: 150,
-    borderRadius: 100,
   },
   logoContainer:{
     alignItems: 'center',

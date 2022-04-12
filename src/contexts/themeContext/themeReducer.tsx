@@ -64,15 +64,15 @@ export const lighTheme: ThemeState = {
       default: '#f4f7fe',
     },
     primary: {
-      main: '#26426C',
+      main: '#0c4f7f',
       contrastText: '#fff',
     },
     secondary: {
       main: '#F04F47',
     },
     sidebar: {
-      bgColor: '#26426C',
-      textColor: '#FFFFFF',
+      bgColor: '#f4f7fe',
+      textColor: '#0c4f7f',
       fontSize: '14px',
       fontWeight: '600',
     },
@@ -84,7 +84,7 @@ export const lighTheme: ThemeState = {
       white: '#fff',
     },
     boxes: {
-      success: '#00812a',
+      success: '#46AD47',
       error: '#930000'
     }
   },

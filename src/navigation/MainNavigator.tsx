@@ -13,6 +13,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { UsuarioPermiso } from '../interfaces/AuthInterface';
 import { ROUTES } from '../data/routes';
 import { usePermissions } from '../hooks/usePermissions';
+import { UnauthorizedScreen } from '../screens/UnauthorizedScreen';
 
 LogBox.ignoreAllLogs();
 
@@ -49,7 +50,6 @@ export const MainNavigator = () => {
       </View>
     )
   }
-  const {permisos} = getPermisos(user.permisos, ROUTES.ApproveQuoteScreen);
 
   return (
     <Drawer.Navigator
@@ -57,11 +57,17 @@ export const MainNavigator = () => {
       screenOptions={{
         header: (props) => <Header {...props}/>
       }}
-      initialRouteName={getPermisos(user.permisos,ROUTES.ApproveQuoteScreen).cantidad>0?ROUTES.ApproveQuoteScreen:ROUTES.AcceptServiceScreen}
+      initialRouteName={
+        getPermisos(user.permisos,ROUTES.ApproveQuoteScreen).cantidad > 0 ? 
+          ROUTES.ApproveQuoteScreen:
+          getPermisos(user.permisos,ROUTES.AcceptServiceScreen).cantidad > 0 ? 
+            ROUTES.AcceptServiceScreen:
+            '/unauthorized'}
     >
       <Drawer.Screen name={ROUTES.ApproveQuoteScreen} component={ApproveQuoteScreen} options={{unmountOnBlur: true}}/>
       <Drawer.Screen name={ROUTES.AcceptServiceScreen} component={AcceptServiceScreen} options={{unmountOnBlur: true}} />
       <Drawer.Screen name={ROUTES.RegisterHoursScreen} component={RegisterHoursScreen} options={{unmountOnBlur: true}} />
+      <Drawer.Screen name={'/unauthorized'} component={UnauthorizedScreen} options={{unmountOnBlur: true}} />
     </Drawer.Navigator>
   );
 }
@@ -77,13 +83,13 @@ const Menu = ({navigation, permissions}: MenuProps) => {
   return (
     <DrawerContentScrollView
       style={{
-        backgroundColor: palette.sidebar.bgColor
+        backgroundColor: palette.background.paper
       }}
     >
       {/* Logo */}
       <View style={mainStyles.logoContainer}>
         <Image
-          source={require('./../assets/mainLogo.png')}
+          source={require('./../assets/LogoSmart3.png')}
           style={mainStyles.logo}
         />
       </View>
@@ -119,7 +125,7 @@ const Header = ({navigation}: Props) => {
 
   return (
     <>
-      <View style={{...mainStyles.topHeader, backgroundColor: palette.sidebar.bgColor}}>
+      <View style={{...mainStyles.topHeader, backgroundColor: palette.background.paper}}>
         <TouchableOpacity
           style={{width: 50, height: 50, justifyContent: 'center'}}
           onPress={() => navigation.toggleDrawer()}
@@ -132,8 +138,8 @@ const Header = ({navigation}: Props) => {
         >
           <Icon name='person' color={palette.sidebar.textColor} size={25}/>
           <View style={{marginLeft: 10}}>
-            <Text style={{color: palette.text.white}}>{user?.nombre}</Text>
-            <Text style={{color: palette.text.white}}>{user?.identificacion_usuario}</Text>
+            <Text style={{color: palette.sidebar.textColor, fontWeight: 'bold'}}>{user?.nombre}</Text>
+            <Text style={{color: palette.sidebar.textColor, fontWeight: 'bold'}}>{user?.identificacion_usuario}</Text>
           </View>
         </TouchableOpacity>
       </View>
