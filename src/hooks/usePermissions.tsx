@@ -1,5 +1,6 @@
 import { UsuarioPermiso } from '../interfaces/AuthInterface';
 import { ROUTES } from '../data/routes';
+import env from '../env';
 
 type permisosOpcion = {
   name: string,
@@ -19,7 +20,7 @@ export const usePermissions = (permissions: UsuarioPermiso[]) => {
   })
 
   permissions.forEach((permiso) => {
-    if(permiso.nombre === 'Aplicación Móvil'){
+    if(permiso.id == env.idAppMovil){
       permiso.opciones.forEach((opcion) => {
         if(allowedRoutes.includes(opcion.url)){
           let permisosOpcion : permisosOpcion = {
