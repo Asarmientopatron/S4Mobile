@@ -11,6 +11,7 @@ import { AuthContext } from '../contexts/authContext/AuthContext';
 import { MessageModal } from '../components/Common/MessageModal';
 import { ShowMore } from '../components/Common/ShowMore';
 import moment from 'moment';
+import env from '../env';
 
 const cells: Cell[] = [
   {
@@ -75,7 +76,7 @@ export const ApproveQuoteScreen = ({route}: Props) => {
   const getPermisos = () => {
     let permisos: string[] = [];
     user?.permisos.forEach((permiso) => {
-      if(permiso.nombre === 'Aplicación Móvil'){
+      if(permiso.id === env.idAppMovil){
         permiso.opciones.forEach((opcion) => {
           if(opcion.url===route.name){
             opcion.permisos.forEach((opcPermiso, index) => {
