@@ -14,6 +14,7 @@ import { UsuarioPermiso } from '../interfaces/AuthInterface';
 import { ROUTES } from '../data/routes';
 import { usePermissions } from '../hooks/usePermissions';
 import { UnauthorizedScreen } from '../screens/UnauthorizedScreen';
+import env from '../env';
 
 LogBox.ignoreAllLogs();
 
@@ -26,7 +27,7 @@ export const MainNavigator = () => {
   const getPermisos = (permissions: UsuarioPermiso[], ruta: string) => {
     let permisos: string[] = [];
     permissions.forEach((permiso) => {
-      if(permiso.nombre === 'Aplicación Móvil'){
+      if(permiso.id === env.idAppMovil){
         permiso.opciones.forEach((opcion) => {
           if(opcion.url===ruta){
             opcion.permisos.forEach((opcPermiso, index) => {
